@@ -1,3 +1,5 @@
+# Motivations
+
 ## 1. What is the project?
 
 Write a game in JS and also write tests for it.
