@@ -9,7 +9,8 @@ module.exports = {
   ignorePatterns: ['/*', '!/src'],
   rules: {
     'no-unused-vars': 'warn',
-    'no-console': 'off',
+    'no-plusplus': ['error', { allowForLoopAfterthoughts: true }],
+    'import/extensions': ['error', 'ignorePackages'],
 
     'lines-between-class-members': [
       'error',
@@ -21,7 +22,6 @@ module.exports = {
         ],
       },
     ],
-    'no-plusplus': ['error', { allowForLoopAfterthoughts: true }],
   },
   overrides: [
     {
