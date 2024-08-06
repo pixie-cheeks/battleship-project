@@ -5,8 +5,9 @@ function isShip(cell) {
   return cell instanceof Ship;
 }
 
-let gameboard;
 describe('Placing ships', () => {
+  let gameboard;
+
   beforeEach(() => {
     gameboard = new Gameboard();
   });
@@ -69,5 +70,21 @@ describe('Placing ships', () => {
         isVertical: true,
       }),
     ).toThrow("Ships can't overlap");
+  });
+});
+
+// Gameboards should have a receiveAttack function that takes a pair of coordinates,
+// determines whether or not the attack hit a ship and then sends the ‘hit’ function
+// to the correct ship, or records the coordinates of the missed shot.
+
+describe('receiveAttack method', () => {
+  let gameboard;
+
+  beforeEach(() => {
+    gameboard = new Gameboard();
+  });
+
+  test('Returns false on miss', () => {
+    expect(gameboard.receiveAttack(0, 0)).toBe(false);
   });
 });

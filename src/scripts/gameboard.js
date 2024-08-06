@@ -12,15 +12,22 @@ class Gameboard {
 
   static #generateCoordinates(startCoordinate, shipLength, isVertical) {
     const coordinates = [];
+    let incrementAxis;
     let [x, y] = startCoordinate;
+
+    if (isVertical) {
+      incrementAxis = () => {
+        y += 1;
+      };
+    } else {
+      incrementAxis = () => {
+        x += 1;
+      };
+    }
 
     for (let i = 0; i < shipLength; i++) {
       coordinates.push([x, y]);
-      if (isVertical) {
-        y += 1;
-      } else {
-        x += 1;
-      }
+      incrementAxis();
     }
 
     return coordinates;
