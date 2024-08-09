@@ -1,6 +1,8 @@
 class Gameboard {
   #board = new Array(10).fill(null).map(() => new Array(10).fill(null));
   #missedShots = [];
+  #totalShips = 0;
+  #sunkenShips = 0;
 
   #setCell([x, y], value) {
     this.#board[x][y] = value;
@@ -47,6 +49,7 @@ class Gameboard {
     });
 
     shipParts.forEach((position) => this.#setCell(position, ship));
+    this.#totalShips += 1;
   }
 
   receiveAttack(x, y) {
@@ -58,11 +61,16 @@ class Gameboard {
     }
 
     ship.hit();
+    if (ship.isSunk()) this.#sunkenShips += 1;
     return true;
   }
 
   getMissedShots() {
     return this.#missedShots;
+  }
+
+  areAllShipsSunk() {
+    return this.#sunkenShips >= this.#totalShips;
   }
 }
 

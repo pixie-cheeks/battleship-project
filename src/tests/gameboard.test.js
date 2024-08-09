@@ -113,4 +113,16 @@ describe('receiveAttack method', () => {
 
     expect(ships.every((ship) => ship.getTimesHit() === 1)).toBe(true);
   });
+
+  test('Should be able to report whether or not all ships have sunk', () => {
+    const ships = coords.map(() => createShip(1));
+
+    for (let i = 0; i < ships.length; i++) {
+      gameboard.placeShip({ coordinate: coords[i], ship: ships[i] });
+    }
+
+    expect(gameboard.areAllShipsSunk()).toBe(false);
+    coords.forEach(([x, y]) => gameboard.receiveAttack(x, y));
+    expect(gameboard.areAllShipsSunk()).toBe(true);
+  });
 });
