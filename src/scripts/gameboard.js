@@ -1,8 +1,3 @@
-import Ship from './ships.js';
-
-// Isolating dependency
-const createShip = (length) => new Ship(length);
-
 class Gameboard {
   #board = new Array(10).fill(null).map(() => new Array(10).fill(null));
   #missedShots = [];
@@ -40,10 +35,10 @@ class Gameboard {
     return this.#board[x][y];
   }
 
-  placeShip({ coordinate, shipLength = 1, isVertical = false }) {
+  placeShip({ coordinate, ship, isVertical = false }) {
     const shipParts = Gameboard.#generateCoordinates(
       coordinate,
-      shipLength,
+      ship.getLength(),
       isVertical,
     );
 
@@ -51,7 +46,6 @@ class Gameboard {
       if (this.getCell(position)) throw new Error("Ships can't overlap");
     });
 
-    const ship = createShip(shipLength);
     shipParts.forEach((position) => this.#setCell(position, ship));
   }
 

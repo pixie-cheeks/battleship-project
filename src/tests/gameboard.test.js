@@ -1,8 +1,8 @@
 import Gameboard from '../scripts/gameboard.js';
 import Ship from '../scripts/ships.js';
 
-function isShip(cell) {
-  return cell instanceof Ship;
+function createShip(length) {
+  return new Ship(length);
 }
 
 describe('Placing ships', () => {
@@ -14,72 +14,68 @@ describe('Placing ships', () => {
 
   test('Should be able to place ships at specific coordinates', () => {
     const coordinate = [5, 5];
+    const ship = createShip(1);
 
-    gameboard.placeShip({ coordinate });
+    gameboard.placeShip({ coordinate, ship });
 
-    const placedShip = gameboard.getCell(coordinate);
-
-    expect(isShip(placedShip)).toBe(true);
+    expect(gameboard.getCell(coordinate)).toEqual(ship);
   });
 
   test('Should place ships in multiple cells if length > 1', () => {
-    gameboard.placeShip({ coordinate: [0, 0], shipLength: 3 });
+    const ship = createShip(3);
+    gameboard.placeShip({ coordinate: [0, 0], ship });
 
-    expect(isShip(gameboard.getCell([0, 0]))).toBe(true);
-    expect(isShip(gameboard.getCell([1, 0]))).toBe(true);
-    expect(isShip(gameboard.getCell([2, 0]))).toBe(true);
+    expect(gameboard.getCell([0, 0])).toEqual(ship);
+    expect(gameboard.getCell([1, 0])).toEqual(ship);
+    expect(gameboard.getCell([2, 0])).toEqual(ship);
   });
 
   test('Should work for vertical alignment', () => {
+    const ship = createShip(3);
     gameboard.placeShip({
       coordinate: [9, 0],
-      shipLength: 3,
+      ship,
       isVertical: true,
     });
 
-    expect(isShip(gameboard.getCell([9, 0]))).toBe(true);
-    expect(isShip(gameboard.getCell([9, 1]))).toBe(true);
-    expect(isShip(gameboard.getCell([9, 2]))).toBe(true);
+    expect(gameboard.getCell([9, 0])).toEqual(ship);
+    expect(gameboard.getCell([9, 1])).toEqual(ship);
+    expect(gameboard.getCell([9, 2])).toEqual(ship);
   });
 
   test("Shouldn't be able to place out of bounds", () => {
-    expect(() => gameboard.placeShip({ coordinate: [10, 10] })).toThrow(
-      'Coordinate goes out of bounds',
-    );
+    expect(() =>
+      gameboard.placeShip({ coordinate: [10, 10], ship: createShip(1) }),
+    ).toThrow('Coordinate goes out of bounds');
   });
 
   test("Ship parts can't go out of bounds either", () => {
     expect(() =>
-      gameboard.placeShip({ coordinate: [9, 9], shipLength: 2 }),
+      gameboard.placeShip({ coordinate: [9, 9], ship: createShip(2) }),
     ).toThrow('Coordinate goes out of bounds');
   });
 
   test("Ships shouldn't be able to overlap each other", () => {
-    gameboard.placeShip({ coordinate: [0, 0] });
-    expect(() => gameboard.placeShip({ coordinate: [0, 0] })).toThrow(
-      "Ships can't overlap",
-    );
+    gameboard.placeShip({ coordinate: [0, 0], ship: createShip(1) });
+    expect(() =>
+      gameboard.placeShip({ coordinate: [0, 0], ship: createShip(1) }),
+    ).toThrow("Ships can't overlap");
   });
 
   test("Ships' parts can't overlap either", () => {
-    gameboard.placeShip({ coordinate: [0, 1], shipLength: 3 });
+    gameboard.placeShip({ coordinate: [0, 1], ship: createShip(3) });
     expect(() =>
       gameboard.placeShip({
         coordinate: [0, 0],
-        shipLength: 3,
+        ship: createShip(3),
         isVertical: true,
       }),
     ).toThrow("Ships can't overlap");
   });
 });
 
-// Gameboards should have a receiveAttack function that takes a pair of coordinates,
-// determines whether or not the attack hit a ship and then sends the ‘hit’ function
-// to the correct ship, or records the coordinates of the missed shot.
-
 describe('receiveAttack method', () => {
   let gameboard;
-
   beforeEach(() => {
     gameboard = new Gameboard();
   });
@@ -89,24 +85,32 @@ describe('receiveAttack method', () => {
   });
 
   test('Returns true on hit', () => {
-    gameboard.placeShip({ coordinate: [0, 0] });
+    gameboard.placeShip({ coordinate: [0, 0], ship: createShip(1) });
     expect(gameboard.receiveAttack(0, 0)).toBe(true);
   });
 
+  const coords = [
+    [0, 0],
+    [0, 1],
+    [5, 5],
+    [3, 4],
+  ];
+
   test('Records coordinates on misses', () => {
-    const coords = [
-      [0, 0],
-      [0, 1],
-      [5, 5],
-      [3, 4],
-    ];
-
     coords.forEach(([x, y]) => gameboard.receiveAttack(x, y));
-
     expect(gameboard.getMissedShots()).toEqual(coords);
   });
 
   test('Sends the hit function to the correct ship on hits', () => {
-    expect(true).toBe(true);
+    // Same number of ships as coords
+    const ships = coords.map(() => createShip(1));
+
+    for (let i = 0; i < ships.length; i++) {
+      gameboard.placeShip({ coordinate: coords[i], ship: ships[i] });
+    }
+
+    coords.forEach(([x, y]) => gameboard.receiveAttack(x, y));
+
+    expect(ships.every((ship) => ship.getTimesHit() === 1)).toBe(true);
   });
 });
