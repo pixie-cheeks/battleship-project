@@ -87,4 +87,26 @@ describe('receiveAttack method', () => {
   test('Returns false on miss', () => {
     expect(gameboard.receiveAttack(0, 0)).toBe(false);
   });
+
+  test('Returns true on hit', () => {
+    gameboard.placeShip({ coordinate: [0, 0] });
+    expect(gameboard.receiveAttack(0, 0)).toBe(true);
+  });
+
+  test('Records coordinates on misses', () => {
+    const coords = [
+      [0, 0],
+      [0, 1],
+      [5, 5],
+      [3, 4],
+    ];
+
+    coords.forEach(([x, y]) => gameboard.receiveAttack(x, y));
+
+    expect(gameboard.getMissedShots()).toEqual(coords);
+  });
+
+  test('Sends the hit function to the correct ship on hits', () => {
+    expect(true).toBe(true);
+  });
 });

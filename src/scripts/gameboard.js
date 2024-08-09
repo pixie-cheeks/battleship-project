@@ -5,6 +5,7 @@ const createShip = (length) => new Ship(length);
 
 class Gameboard {
   #board = new Array(10).fill(null).map(() => new Array(10).fill(null));
+  #missedShots = [];
 
   #setCell([x, y], value) {
     this.#board[x][y] = value;
@@ -52,6 +53,22 @@ class Gameboard {
 
     const ship = createShip(shipLength);
     shipParts.forEach((position) => this.#setCell(position, ship));
+  }
+
+  receiveAttack(x, y) {
+    const ship = this.getCell([x, y]);
+
+    if (!ship) {
+      this.#missedShots.push([x, y]);
+      return false;
+    }
+
+    ship.hit();
+    return true;
+  }
+
+  getMissedShots() {
+    return this.#missedShots;
   }
 }
 
