@@ -6,5 +6,308 @@
     <title>Battleship</title>
   </head>
 
-  <body></body>
+  <body class="page">
+    <div class="turn-plate">Player Turn</div>
+    <div class="boards">
+      <div class="boards__semi">
+        <div class="boards__title js-player1-name">player title</div>
+        <div class="boards__col-index">
+          <div class="boards__letters">A</div>
+          <div class="boards__letters">B</div>
+          <div class="boards__letters">C</div>
+          <div class="boards__letters">D</div>
+          <div class="boards__letters">E</div>
+          <div class="boards__letters">F</div>
+          <div class="boards__letters">G</div>
+          <div class="boards__letters">H</div>
+          <div class="boards__letters">I</div>
+          <div class="boards__letters">J</div>
+        </div>
+        <div class="boards__row-index">
+          <div class="boards__numbers">1</div>
+          <div class="boards__numbers">2</div>
+          <div class="boards__numbers">3</div>
+          <div class="boards__numbers">4</div>
+          <div class="boards__numbers">5</div>
+          <div class="boards__numbers">6</div>
+          <div class="boards__numbers">7</div>
+          <div class="boards__numbers">8</div>
+          <div class="boards__numbers">9</div>
+          <div class="boards__numbers">10</div>
+        </div>
+        <div class="boards__gameboard gameboard">
+          <div class="gameboard__row" data-row="0">
+            <div class="gameboard__cell" data-column="0"></div>
+            <div class="gameboard__cell" data-column="1"></div>
+            <div class="gameboard__cell" data-column="2"></div>
+            <div class="gameboard__cell" data-column="3"></div>
+            <div class="gameboard__cell" data-column="4"></div>
+            <div class="gameboard__cell" data-column="5"></div>
+            <div class="gameboard__cell" data-column="6"></div>
+            <div class="gameboard__cell" data-column="7"></div>
+            <div class="gameboard__cell" data-column="8"></div>
+            <div class="gameboard__cell" data-column="9"></div>
+          </div>
+          <div class="gameboard__row" data-row="1">
+            <div class="gameboard__cell" data-column="0"></div>
+            <div class="gameboard__cell" data-column="1"></div>
+            <div class="gameboard__cell" data-column="2"></div>
+            <div class="gameboard__cell" data-column="3"></div>
+            <div class="gameboard__cell" data-column="4"></div>
+            <div class="gameboard__cell" data-column="5"></div>
+            <div class="gameboard__cell" data-column="6"></div>
+            <div class="gameboard__cell" data-column="7"></div>
+            <div class="gameboard__cell" data-column="8"></div>
+            <div class="gameboard__cell" data-column="9"></div>
+          </div>
+          <div class="gameboard__row" data-row="2">
+            <div class="gameboard__cell" data-column="0"></div>
+            <div class="gameboard__cell" data-column="1"></div>
+            <div class="gameboard__cell" data-column="2"></div>
+            <div class="gameboard__cell" data-column="3"></div>
+            <div class="gameboard__cell" data-column="4"></div>
+            <div class="gameboard__cell" data-column="5"></div>
+            <div class="gameboard__cell" data-column="6"></div>
+            <div class="gameboard__cell" data-column="7"></div>
+            <div class="gameboard__cell" data-column="8"></div>
+            <div class="gameboard__cell" data-column="9"></div>
+          </div>
+          <div class="gameboard__row" data-row="3">
+            <div class="gameboard__cell" data-column="0"></div>
+            <div class="gameboard__cell" data-column="1"></div>
+            <div class="gameboard__cell" data-column="2"></div>
+            <div class="gameboard__cell" data-column="3"></div>
+            <div class="gameboard__cell" data-column="4"></div>
+            <div class="gameboard__cell" data-column="5"></div>
+            <div class="gameboard__cell" data-column="6"></div>
+            <div class="gameboard__cell" data-column="7"></div>
+            <div class="gameboard__cell" data-column="8"></div>
+            <div class="gameboard__cell" data-column="9"></div>
+          </div>
+          <div class="gameboard__row" data-row="4">
+            <div class="gameboard__cell" data-column="0"></div>
+            <div class="gameboard__cell" data-column="1"></div>
+            <div class="gameboard__cell" data-column="2"></div>
+            <div class="gameboard__cell" data-column="3"></div>
+            <div class="gameboard__cell" data-column="4"></div>
+            <div class="gameboard__cell" data-column="5"></div>
+            <div class="gameboard__cell" data-column="6"></div>
+            <div class="gameboard__cell" data-column="7"></div>
+            <div class="gameboard__cell" data-column="8"></div>
+            <div class="gameboard__cell" data-column="9"></div>
+          </div>
+          <div class="gameboard__row" data-row="5">
+            <div class="gameboard__cell" data-column="0"></div>
+            <div class="gameboard__cell" data-column="1"></div>
+            <div class="gameboard__cell" data-column="2"></div>
+            <div class="gameboard__cell" data-column="3"></div>
+            <div class="gameboard__cell" data-column="4"></div>
+            <div class="gameboard__cell" data-column="5"></div>
+            <div class="gameboard__cell" data-column="6"></div>
+            <div class="gameboard__cell" data-column="7"></div>
+            <div class="gameboard__cell" data-column="8"></div>
+            <div class="gameboard__cell" data-column="9"></div>
+          </div>
+          <div class="gameboard__row" data-row="6">
+            <div class="gameboard__cell" data-column="0"></div>
+            <div class="gameboard__cell" data-column="1"></div>
+            <div class="gameboard__cell" data-column="2"></div>
+            <div class="gameboard__cell" data-column="3"></div>
+            <div class="gameboard__cell" data-column="4"></div>
+            <div class="gameboard__cell" data-column="5"></div>
+            <div class="gameboard__cell" data-column="6"></div>
+            <div class="gameboard__cell" data-column="7"></div>
+            <div class="gameboard__cell" data-column="8"></div>
+            <div class="gameboard__cell" data-column="9"></div>
+          </div>
+          <div class="gameboard__row" data-row="7">
+            <div class="gameboard__cell" data-column="0"></div>
+            <div class="gameboard__cell" data-column="1"></div>
+            <div class="gameboard__cell" data-column="2"></div>
+            <div class="gameboard__cell" data-column="3"></div>
+            <div class="gameboard__cell" data-column="4"></div>
+            <div class="gameboard__cell" data-column="5"></div>
+            <div class="gameboard__cell" data-column="6"></div>
+            <div class="gameboard__cell" data-column="7"></div>
+            <div class="gameboard__cell" data-column="8"></div>
+            <div class="gameboard__cell" data-column="9"></div>
+          </div>
+          <div class="gameboard__row" data-row="8">
+            <div class="gameboard__cell" data-column="0"></div>
+            <div class="gameboard__cell" data-column="1"></div>
+            <div class="gameboard__cell" data-column="2"></div>
+            <div class="gameboard__cell" data-column="3"></div>
+            <div class="gameboard__cell" data-column="4"></div>
+            <div class="gameboard__cell" data-column="5"></div>
+            <div class="gameboard__cell" data-column="6"></div>
+            <div class="gameboard__cell" data-column="7"></div>
+            <div class="gameboard__cell" data-column="8"></div>
+            <div class="gameboard__cell" data-column="9"></div>
+          </div>
+          <div class="gameboard__row" data-row="9">
+            <div class="gameboard__cell" data-column="0"></div>
+            <div class="gameboard__cell" data-column="1"></div>
+            <div class="gameboard__cell" data-column="2"></div>
+            <div class="gameboard__cell" data-column="3"></div>
+            <div class="gameboard__cell" data-column="4"></div>
+            <div class="gameboard__cell" data-column="5"></div>
+            <div class="gameboard__cell" data-column="6"></div>
+            <div class="gameboard__cell" data-column="7"></div>
+            <div class="gameboard__cell" data-column="8"></div>
+            <div class="gameboard__cell" data-column="9"></div>
+          </div>
+        </div>
+      </div>
+      <div class="boards__semi">
+        <div class="boards__title js-player2-name">player title</div>
+        <div class="boards__col-index">
+          <div class="boards__letters">A</div>
+          <div class="boards__letters">B</div>
+          <div class="boards__letters">C</div>
+          <div class="boards__letters">D</div>
+          <div class="boards__letters">E</div>
+          <div class="boards__letters">F</div>
+          <div class="boards__letters">G</div>
+          <div class="boards__letters">H</div>
+          <div class="boards__letters">I</div>
+          <div class="boards__letters">J</div>
+        </div>
+        <div class="boards__row-index">
+          <div class="boards__numbers">1</div>
+          <div class="boards__numbers">2</div>
+          <div class="boards__numbers">3</div>
+          <div class="boards__numbers">4</div>
+          <div class="boards__numbers">5</div>
+          <div class="boards__numbers">6</div>
+          <div class="boards__numbers">7</div>
+          <div class="boards__numbers">8</div>
+          <div class="boards__numbers">9</div>
+          <div class="boards__numbers">10</div>
+        </div>
+        <div class="boards__gameboard gameboard">
+          <div class="gameboard__row" data-row="0">
+            <div class="gameboard__cell" data-column="0"></div>
+            <div class="gameboard__cell" data-column="1"></div>
+            <div class="gameboard__cell" data-column="2"></div>
+            <div class="gameboard__cell" data-column="3"></div>
+            <div class="gameboard__cell" data-column="4"></div>
+            <div class="gameboard__cell" data-column="5"></div>
+            <div class="gameboard__cell" data-column="6"></div>
+            <div class="gameboard__cell" data-column="7"></div>
+            <div class="gameboard__cell" data-column="8"></div>
+            <div class="gameboard__cell" data-column="9"></div>
+          </div>
+          <div class="gameboard__row" data-row="1">
+            <div class="gameboard__cell" data-column="0"></div>
+            <div class="gameboard__cell" data-column="1"></div>
+            <div class="gameboard__cell" data-column="2"></div>
+            <div class="gameboard__cell" data-column="3"></div>
+            <div class="gameboard__cell" data-column="4"></div>
+            <div class="gameboard__cell" data-column="5"></div>
+            <div class="gameboard__cell" data-column="6"></div>
+            <div class="gameboard__cell" data-column="7"></div>
+            <div class="gameboard__cell" data-column="8"></div>
+            <div class="gameboard__cell" data-column="9"></div>
+          </div>
+          <div class="gameboard__row" data-row="2">
+            <div class="gameboard__cell" data-column="0"></div>
+            <div class="gameboard__cell" data-column="1"></div>
+            <div class="gameboard__cell" data-column="2"></div>
+            <div class="gameboard__cell" data-column="3"></div>
+            <div class="gameboard__cell" data-column="4"></div>
+            <div class="gameboard__cell" data-column="5"></div>
+            <div class="gameboard__cell" data-column="6"></div>
+            <div class="gameboard__cell" data-column="7"></div>
+            <div class="gameboard__cell" data-column="8"></div>
+            <div class="gameboard__cell" data-column="9"></div>
+          </div>
+          <div class="gameboard__row" data-row="3">
+            <div class="gameboard__cell" data-column="0"></div>
+            <div class="gameboard__cell" data-column="1"></div>
+            <div class="gameboard__cell" data-column="2"></div>
+            <div class="gameboard__cell" data-column="3"></div>
+            <div class="gameboard__cell" data-column="4"></div>
+            <div class="gameboard__cell" data-column="5"></div>
+            <div class="gameboard__cell" data-column="6"></div>
+            <div class="gameboard__cell" data-column="7"></div>
+            <div class="gameboard__cell" data-column="8"></div>
+            <div class="gameboard__cell" data-column="9"></div>
+          </div>
+          <div class="gameboard__row" data-row="4">
+            <div class="gameboard__cell" data-column="0"></div>
+            <div class="gameboard__cell" data-column="1"></div>
+            <div class="gameboard__cell" data-column="2"></div>
+            <div class="gameboard__cell" data-column="3"></div>
+            <div class="gameboard__cell" data-column="4"></div>
+            <div class="gameboard__cell" data-column="5"></div>
+            <div class="gameboard__cell" data-column="6"></div>
+            <div class="gameboard__cell" data-column="7"></div>
+            <div class="gameboard__cell" data-column="8"></div>
+            <div class="gameboard__cell" data-column="9"></div>
+          </div>
+          <div class="gameboard__row" data-row="5">
+            <div class="gameboard__cell" data-column="0"></div>
+            <div class="gameboard__cell" data-column="1"></div>
+            <div class="gameboard__cell" data-column="2"></div>
+            <div class="gameboard__cell" data-column="3"></div>
+            <div class="gameboard__cell" data-column="4"></div>
+            <div class="gameboard__cell" data-column="5"></div>
+            <div class="gameboard__cell" data-column="6"></div>
+            <div class="gameboard__cell" data-column="7"></div>
+            <div class="gameboard__cell" data-column="8"></div>
+            <div class="gameboard__cell" data-column="9"></div>
+          </div>
+          <div class="gameboard__row" data-row="6">
+            <div class="gameboard__cell" data-column="0"></div>
+            <div class="gameboard__cell" data-column="1"></div>
+            <div class="gameboard__cell" data-column="2"></div>
+            <div class="gameboard__cell" data-column="3"></div>
+            <div class="gameboard__cell" data-column="4"></div>
+            <div class="gameboard__cell" data-column="5"></div>
+            <div class="gameboard__cell" data-column="6"></div>
+            <div class="gameboard__cell" data-column="7"></div>
+            <div class="gameboard__cell" data-column="8"></div>
+            <div class="gameboard__cell" data-column="9"></div>
+          </div>
+          <div class="gameboard__row" data-row="7">
+            <div class="gameboard__cell" data-column="0"></div>
+            <div class="gameboard__cell" data-column="1"></div>
+            <div class="gameboard__cell" data-column="2"></div>
+            <div class="gameboard__cell" data-column="3"></div>
+            <div class="gameboard__cell" data-column="4"></div>
+            <div class="gameboard__cell" data-column="5"></div>
+            <div class="gameboard__cell" data-column="6"></div>
+            <div class="gameboard__cell" data-column="7"></div>
+            <div class="gameboard__cell" data-column="8"></div>
+            <div class="gameboard__cell" data-column="9"></div>
+          </div>
+          <div class="gameboard__row" data-row="8">
+            <div class="gameboard__cell" data-column="0"></div>
+            <div class="gameboard__cell" data-column="1"></div>
+            <div class="gameboard__cell" data-column="2"></div>
+            <div class="gameboard__cell" data-column="3"></div>
+            <div class="gameboard__cell" data-column="4"></div>
+            <div class="gameboard__cell" data-column="5"></div>
+            <div class="gameboard__cell" data-column="6"></div>
+            <div class="gameboard__cell" data-column="7"></div>
+            <div class="gameboard__cell" data-column="8"></div>
+            <div class="gameboard__cell" data-column="9"></div>
+          </div>
+          <div class="gameboard__row" data-row="9">
+            <div class="gameboard__cell" data-column="0"></div>
+            <div class="gameboard__cell" data-column="1"></div>
+            <div class="gameboard__cell" data-column="2"></div>
+            <div class="gameboard__cell" data-column="3"></div>
+            <div class="gameboard__cell" data-column="4"></div>
+            <div class="gameboard__cell" data-column="5"></div>
+            <div class="gameboard__cell" data-column="6"></div>
+            <div class="gameboard__cell" data-column="7"></div>
+            <div class="gameboard__cell" data-column="8"></div>
+            <div class="gameboard__cell" data-column="9"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button class="button">Start Game</button>
+  </body>
 </html>

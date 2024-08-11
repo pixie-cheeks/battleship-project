@@ -1,1 +1,21 @@
 @import url('styles/reset.css');
+
+.page {
+  font-size: 1.6rem;
+  padding: 1rem;
+  background-color: pink;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+}
+
+.boards {
+  display: flex;
+  gap: 2rem;
+}
+
+/* .boards__semi {
+  display: grid;
+  grid-template-columns: 2rem 30rem;
+  grid-template-rows: 3rem 30rem;
+} */
