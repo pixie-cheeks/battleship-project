@@ -5,8 +5,8 @@ export default merge(common, {
   mode: 'development',
   devtool: 'inline-source-map',
   devServer: {
-    static: '../dist',
-    watchFiles: ['../src/index.html'],
+    static: './dist',
+    watchFiles: ['./src/index.html'],
     hot: true,
   },
   module: {
