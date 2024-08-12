@@ -2,18 +2,68 @@
   font-size: 1.6rem;
   padding: 1rem;
   background-color: pink;
-  display: flex;
-  flex-flow: column;
-  align-items: center;
+}
+
+.turn-plate {
+  text-align: center;
 }
 
 .boards {
   display: flex;
-  gap: 2rem;
+  justify-content: space-evenly;
+
+  --gap-size: 0.2rem;
+  --cell-size: 2rem;
 }
 
 .boards__semi {
   display: grid;
-  grid-template-columns: 2rem 30rem;
-  grid-template-rows: 3rem 30rem;
+  grid-template-areas:
+    'title     title'
+    '......... col-index'
+    'row-index gameboard';
+}
+
+.boards__title {
+  grid-area: title;
+  text-align: center;
+}
+
+.boards__col-index,
+.boards__row-index {
+  display: grid;
+  gap: var(--gap-size);
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+.boards__col-index {
+  grid-area: col-index;
+  padding-bottom: var(--gap-size);
+  grid-auto-columns: var(--cell-size);
+  grid-auto-flow: column;
+  text-align: center;
+}
+
+.boards__row-index {
+  grid-area: row-index;
+  align-items: center;
+  padding-right: var(--gap-size);
+  text-align: right;
+}
+
+.boards__gameboard {
+  grid-area: gameboard;
+}
+
+.gameboard {
+  display: grid;
+  grid-template-columns: repeat(10, var(--cell-size));
+  grid-auto-rows: var(--cell-size);
+  max-width: 100%;
+  gap: var(--gap-size);
+}
+
+.gameboard__cell {
+  background-color: blue;
 }
