@@ -1,22 +1,24 @@
 .page {
+  margin: 0;
   font-size: 1.6rem;
-  padding: 1rem;
   background-color: pink;
 }
 
 .turn-plate {
-  text-align: center;
+  width: max-content;
+  margin: 0 auto;
 }
 
-.boards {
-  display: flex;
-  justify-content: space-evenly;
+.board-area {
+  display: grid;
+  grid-auto-flow: column;
+  place-items: center;
 
   --gap-size: 0.2rem;
   --cell-size: 2rem;
 }
 
-.boards__semi {
+.board-area__one-half {
   display: grid;
   grid-template-areas:
     'title     title'
@@ -24,20 +26,20 @@
     'row-index gameboard';
 }
 
-.boards__title {
+.board-area__title {
   grid-area: title;
   text-align: center;
 }
 
-.boards__col-index,
-.boards__row-index {
+.board-area__col-index,
+.board-area__row-index {
   display: grid;
   gap: var(--gap-size);
-  font-size: 0.8rem;
+  font-size: calc(0.6 * var(--cell-size));
   font-weight: bold;
 }
 
-.boards__col-index {
+.board-area__col-index {
   grid-area: col-index;
   padding-bottom: var(--gap-size);
   grid-auto-columns: var(--cell-size);
@@ -45,14 +47,15 @@
   text-align: center;
 }
 
-.boards__row-index {
+.board-area__row-index {
   grid-area: row-index;
   align-items: center;
   padding-right: var(--gap-size);
+  grid-auto-rows: var(--cell-size);
   text-align: right;
 }
 
-.boards__gameboard {
+.board-area__gameboard {
   grid-area: gameboard;
 }
 
@@ -60,7 +63,6 @@
   display: grid;
   grid-template-columns: repeat(10, var(--cell-size));
   grid-auto-rows: var(--cell-size);
-  max-width: 100%;
   gap: var(--gap-size);
 }
 
