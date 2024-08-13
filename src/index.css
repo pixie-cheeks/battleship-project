@@ -1,10 +1,16 @@
 .page {
   margin: 0;
   font-size: 1.6rem;
-  background-color: pink;
+}
+
+.game-title {
+  text-align: center;
+  letter-spacing: 3px;
 }
 
 .turn-plate {
+  border: 2px solid black;
+  padding: 1rem;
   width: max-content;
   margin: 0 auto;
 }
@@ -13,9 +19,8 @@
   display: grid;
   grid-auto-flow: column;
   place-items: center;
-
-  --gap-size: 0.2rem;
-  --cell-size: 2rem;
+  place-content: center;
+  gap: 3vw;
 }
 
 .board-area__one-half {
@@ -24,9 +29,13 @@
     'title     title'
     '......... col-index'
     'row-index gameboard';
+
+  --cell-size: 2.5rem;
+  --gap-size: 2px;
 }
 
 .board-area__title {
+  font-weight: bold;
   grid-area: title;
   text-align: center;
 }
@@ -35,7 +44,7 @@
 .board-area__row-index {
   display: grid;
   gap: var(--gap-size);
-  font-size: calc(0.6 * var(--cell-size));
+  font-size: calc(var(--cell-size) / 2.5);
   font-weight: bold;
 }
 
@@ -67,5 +76,26 @@
 }
 
 .gameboard__cell {
-  background-color: blue;
+  background-color: hsl(186deg 68% 33% / 36.3%);
+}
+
+.gameboard__cell--occupied {
+  background-color: black;
+}
+
+.gameboard__cell--hit {
+  background-color: red;
+}
+
+.gameboard__cell--miss {
+  background-color: rgb(216 210 210);
+}
+
+.control-panel {
+  width: max-content;
+  margin: 2rem auto;
+}
+
+.button {
+  padding: 10px;
 }
