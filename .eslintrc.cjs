@@ -1,3 +1,4 @@
+/**  @type {import('eslint')} */
 module.exports = {
   env: {
     browser: true,
@@ -11,6 +12,7 @@ module.exports = {
     'no-unused-vars': 'warn',
     'no-plusplus': ['error', { allowForLoopAfterthoughts: true }],
     'import/extensions': ['error', 'ignorePackages'],
+    'no-param-reassign': ['error', { props: false }],
 
     'lines-between-class-members': [
       'error',

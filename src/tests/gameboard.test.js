@@ -126,3 +126,29 @@ describe('receiveAttack method', () => {
     expect(gameboard.areAllShipsSunk()).toBe(true);
   });
 });
+
+describe('Info for DOM', () => {
+  const gameboard = new Gameboard();
+  const coords = [
+    [0, 0],
+    [0, 1],
+    [5, 5],
+    [3, 4],
+  ];
+
+  const ships = coords.map(() => createShip(1));
+
+  test("Get placed ships' coordinates", () => {
+    coords.forEach((coordinate, i) =>
+      gameboard.placeShip({ coordinate, ship: ships[i] }),
+    );
+
+    expect(gameboard.getPlacedShips()).toStrictEqual(coords);
+  });
+
+  test('Get coordinates of hit shots', () => {
+    coords.forEach((coordinate) => gameboard.receiveAttack(...coordinate));
+
+    expect(gameboard.getHitShots()).toStrictEqual(coords);
+  });
+});

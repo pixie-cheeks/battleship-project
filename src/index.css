@@ -79,6 +79,10 @@
   background-color: hsl(186deg 68% 33% / 36.3%);
 }
 
+.gameboard__cell:hover {
+  outline: 2px solid black;
+}
+
 .gameboard__cell--occupied {
   background-color: black;
 }
@@ -90,6 +94,18 @@
 .gameboard__cell--miss {
   background-color: rgb(216 210 210);
 }
+
+.gameboard--type--enemy {
+  cursor: crosshair;
+}
+
+/* stylelint-disable selector-max-class, selector-max-combinators */
+
+.gameboard--type--enemy > .gameboard__cell--hit:hover,
+.gameboard--type--enemy > .gameboard__cell--miss:hover {
+  cursor: not-allowed;
+}
+/* stylelint-enable selector-max-class, selector-max-combinators */
 
 .control-panel {
   width: max-content;
