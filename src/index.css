@@ -11,8 +11,8 @@
 .turn-plate {
   border: 2px solid black;
   padding: 1rem;
-  width: max-content;
-  margin: 0 auto;
+  text-align: center;
+  margin: 2rem;
 }
 
 .board-area {
@@ -70,17 +70,14 @@
 
 .gameboard {
   display: grid;
-  grid-template-columns: repeat(10, var(--cell-size));
-  grid-auto-rows: var(--cell-size);
+  grid-auto-flow: column;
+  grid-template-rows: repeat(10, var(--cell-size));
+  grid-auto-columns: var(--cell-size);
   gap: var(--gap-size);
 }
 
 .gameboard__cell {
   background-color: hsl(186deg 68% 33% / 36.3%);
-}
-
-.gameboard__cell:hover {
-  outline: 2px solid black;
 }
 
 .gameboard__cell--occupied {
@@ -107,11 +104,27 @@
 }
 /* stylelint-enable selector-max-class, selector-max-combinators */
 
-.control-panel {
+.controls {
   width: max-content;
   margin: 2rem auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
 }
 
 .button {
-  padding: 10px;
+  position: relative;
+  min-height: 2rem;
+  width: 15ch;
+  color: black;
+  font-weight: bold;
+  border: none;
+  background-color: hsl(186deg 68% 33% / 36.3%);
+  box-shadow: 0 10px hsl(186deg 45% 22% / 36.3%);
+}
+
+.button:active {
+  top: 10px;
+  box-shadow: 0 0;
 }

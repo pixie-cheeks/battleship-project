@@ -1,6 +1,7 @@
 class ManageDOM {
   #domCells = Array.from(document.querySelectorAll('.gameboard__cell'));
   #domBoards = Array.from(document.querySelectorAll('.gameboard'));
+  #turnPlate = document.querySelector('.turn-plate');
 
   constructor(player1, player2, isPVP) {
     this.isPVP = isPVP;
@@ -27,33 +28,40 @@ class ManageDOM {
 
   render() {
     this.resetDOM();
-    this.players[0]
+    this.#turnPlate.textContent = `${this.activePlayer.posessiveName} turn`;
+    const firstGameboardOccupiedCells = this.players[0]
       .getBoard()
-      .getPlacedShips()
-      .forEach(([x, y]) => {
-        this.#domBoards[0]
-          .querySelector(`[data-index="${x}${y}"`)
-          .classList.add('gameboard__cell--occupied');
-      });
+      .getPlacedShips();
 
-    this.players.forEach((player) => {
+    firstGameboardOccupiedCells.forEach(([x, y]) => {
+      this.#domBoards[0]
+        .querySelector(`[data-index="${x}${y}"`)
+        .classList.add('gameboard__cell--occupied');
+    });
+
+    this.players.forEach((player, i) => {
       const gameboard = player.getBoard();
 
       gameboard.getHitShots().forEach(([x, y]) => {
-        this.#domBoards
+        this.#domBoards[i]
           .querySelector(`[data-index="${x}${y}"]`)
           .classList.add('gameboard__cell--hit');
+      });
+      gameboard.getMissedShots().forEach(([x, y]) => {
+        this.#domBoards[i]
+          .querySelector(`[data-index="${x}${y}"]`)
+          .classList.add('gameboard__cell--miss');
       });
     });
   }
 
-  bindAttackEvent(board, index) {
+  bindAttackEvent(board, boardIndex) {
     board.addEventListener('click', (e) => {
       const cell = e.target;
-      if (!cell.classList.includes('.gameboard__cell')) return;
+      if (!cell.classList.contains('gameboard__cell')) return;
 
       const coordinate = cell.dataset.index.split('').map((el) => Number(el));
-      this.attackBoard(coordinate, index);
+      this.attackBoard(coordinate, this.players[boardIndex]);
     });
   }
 
@@ -64,16 +72,34 @@ class ManageDOM {
     ];
   }
 
-  attackBoard([x, y], boardIndex) {
-    if (this.inactivePlayer !== this.players[boardIndex]) return;
-    this.inactivePlayer.getBoard().receiveAttack(x, y);
+  attackBoard([x, y], player) {
+    let wasHit = false;
+    if (this.inactivePlayer !== player) return false;
+    try {
+      wasHit = this.inactivePlayer.getBoard().receiveAttack(x, y);
+    } catch (error) {
+      return false;
+    }
 
+    if (!wasHit) this.switchActivePlayer();
     this.render();
-    this.switchActivePlayer();
+    if (this.inactivePlayer.getBoard().areAllShipsSunk()) return this.endGame();
 
-    if (!this.activePlayer.isComputer) return;
-    this.attackBoard(
-      this.activePlayer.getAttackedCell(this.inactivePlayer.getBoard()),
+    if (!this.activePlayer.isComputer) return true;
+    setTimeout(() => {
+      this.attackBoard(
+        this.activePlayer.getAttackedCell(this.inactivePlayer.getBoard()),
+        this.inactivePlayer,
+      );
+    }, 400);
+
+    return true;
+  }
+
+  endGame() {
+    this.#turnPlate.textContent = `${this.activePlayer.name} won!`;
+    this.#domBoards.forEach((board) =>
+      board.replaceWith(board.cloneNode(true)),
     );
   }
 }

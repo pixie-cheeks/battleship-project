@@ -11,3 +11,11 @@ test('Each Player instance should have its own Gameboard', () => {
 
   expect(player1.getBoard() === player2.getBoard()).toBe(false);
 });
+
+test('Computer should be able to make random moves', () => {
+  const player = new Player();
+  const computer = new Player(true);
+
+  const [x, y] = computer.getAttackedCell(player.getBoard());
+  expect(x >= 0 && x <= 9 && y >= 0 && y <= 9).toBe(true);
+});

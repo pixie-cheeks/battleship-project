@@ -18,3 +18,9 @@ First, you need to clone the repo. Once that's done, install the dependencies an
 pnpm install
 pnpm run build
 ```
+
+## Conclusion
+
+Extremely disappointed by myself. Barely managed to finish the project due to
+procrastination. Was hoping for perfection at the start, but sadly I don't have
+time to procrastinate over a small project for so long.

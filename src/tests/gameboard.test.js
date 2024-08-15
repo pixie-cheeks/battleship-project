@@ -125,6 +125,14 @@ describe('receiveAttack method', () => {
     coords.forEach(([x, y]) => gameboard.receiveAttack(x, y));
     expect(gameboard.areAllShipsSunk()).toBe(true);
   });
+
+  test('Should throw an error if attacking an attacked cell', () => {
+    gameboard.receiveAttack(0, 0);
+
+    expect(() => gameboard.receiveAttack(0, 0)).toThrow(
+      'This cell is already shot!',
+    );
+  });
 });
 
 describe('Info for DOM', () => {

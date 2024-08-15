@@ -1,5 +1,6 @@
 class Gameboard {
   #board = new Array(10).fill(null).map(() => new Array(10).fill(null));
+  #alreadyShot = new Array(10).fill(null).map(() => new Array(10).fill(false));
   #missedShots = [];
   #hitShots = [];
   #placedShips = [];
@@ -34,8 +35,9 @@ class Gameboard {
   }
 
   getCell([x, y]) {
-    if (x < 0 || y < 0 || x > 9 || y > 9)
+    if (x < 0 || y < 0 || x > 9 || y > 9) {
       throw new Error('Coordinate goes out of bounds');
+    }
     return this.#board[x][y];
   }
 
@@ -47,15 +49,21 @@ class Gameboard {
     );
 
     shipParts.forEach((position) => {
-      if (this.getCell(position)) throw new Error("Ships can't overlap");
+      if (this.getCell(position)) {
+        throw new Error("Ships can't overlap");
+      }
     });
 
     shipParts.forEach((position) => this.#setCell(position, ship));
+    ship.isVertical = isVertical;
+    ship.coordinates = shipParts;
     this.#placedShips.push(...shipParts);
     this.#totalShips += 1;
   }
 
   receiveAttack(x, y) {
+    if (this.#alreadyShot[x][y]) throw new Error('This cell is already shot!');
+    this.#alreadyShot[x][y] = true;
     const ship = this.getCell([x, y]);
 
     if (!ship) {
@@ -67,6 +75,13 @@ class Gameboard {
     this.#hitShots.push([x, y]);
     if (ship.isSunk()) this.#sunkenShips += 1;
     return true;
+  }
+
+  deleteShip(coordinate) {
+    const ship = this.getCell(coordinate);
+    if (!ship) return null;
+    ship.coordinates.forEach((partPos) => this.#setCell(partPos, null));
+    return ship;
   }
 
   getMissedShots() {
